@@ -1,0 +1,9 @@
+project: savantenvs/OpenSees
+target: fuzz_uniaxial_material
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz_uniaxial_material/testsuite
+cmds:
+  - cmd: /mayhem/build-mayhem/bin/fuzz_uniaxial_material
+    libfuzzer: true
+    timeout: 30
