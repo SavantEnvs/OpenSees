@@ -1,12 +1,7 @@
 name: CMake Build
 
+# Archived branch: push/pull_request triggers removed (savantenvs §6.4).
 on:
-  push:
-    branches: [master]
-
-  pull_request:
-    branches: [master]
-
   workflow_dispatch:
 
 jobs:
@@ -68,10 +63,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: conan install	  
+      - name: conan install
         run: |
           pip install conan
-          conan profile detect --force	  
+          conan profile detect --force
       - name: 2.3.2. Building the OpenSees Applications and Python module
         run: |
           export FC=/opt/homebrew/bin/gfortran-13
@@ -127,14 +122,14 @@ jobs:
       - name: Install conan
         run: |
           pip install conan
-          conan profile detect --force	  
+          conan profile detect --force
       - name: MUMPS
         shell: cmd
         run: |
           git clone https://github.com/OpenSees/mumps.git
           cd mumps
           call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat" intel64 mod
-          cmake -S . -B build -G Ninja -Darith=d -DCMAKE_MSVC_RUNTIME_LIBRARY="MultiThreaded" -DCMAKE_EXE_LINKER_FLAGS="/link /FORCE:MULTIPLE"  -DCMAKE_SHARED_LINKER_FLAGS="/link /FORCE:MULTIPLE"	  
+          cmake -S . -B build -G Ninja -Darith=d -DCMAKE_MSVC_RUNTIME_LIBRARY="MultiThreaded" -DCMAKE_EXE_LINKER_FLAGS="/link /FORCE:MULTIPLE"  -DCMAKE_SHARED_LINKER_FLAGS="/link /FORCE:MULTIPLE"
           cd build
           cmake --build . --config Release
       - name: 2.2.2. Building the OpenSees Applications and Python module
